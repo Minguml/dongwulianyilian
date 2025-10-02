@@ -1,0 +1,50 @@
+[
+	{
+		"id": "2",
+		"mini_img": "2",
+		"img": "2",
+		"cost": "1000",
+		"text": "skin_bird_fragrance",
+		"ps": "fall_follower"
+	},
+	{
+		"id": "4",
+		"mini_img": "4",
+		"img": "4",
+		"cost": "800",
+		"text": "skin_snow_dance",
+		"ps": "fall_snow"
+	},
+	{
+		"id": "6",
+		"mini_img": "6",
+		"img": "6",
+		"cost": "500",
+		"text": "skin_quiet_path",
+		"ps": "fall_leaf"
+	},
+	{
+		"id": "5",
+		"mini_img": "5",
+		"img": "5",
+		"cost": "500",
+		"text": "skin_simple_blue",
+		"ps": "stars"
+	},
+	{
+		"id": "1",
+		"mini_img": "1",
+		"img": "1",
+		"cost": "1000",
+		"text": "skin_brilliant_stars",
+		"ps": "stars2"
+	},
+	{
+		"id": "3",
+		"mini_img": "3",
+		"img": "3",
+		"cost": "2000",
+		"text": "skin_future_tech",
+		"ps": "fx"
+	}
+]
