@@ -2,6 +2,8 @@ const { ccclass } = cc._decorator;
 
 @ccclass
 export default class I18Manager {
+	private static readonly LANGUAGE_STORAGE_KEY =
+		"game_language_preference";
 	private static _currentLang: string = "vi";
 	private static _dict: { [key: string]: string } = {};
 	private static _isInitialized: boolean = false;
@@ -9,7 +11,9 @@ export default class I18Manager {
 	/** Initialize with default language */
 	public static async init(): Promise<void> {
 		if (!this._isInitialized) {
-			await this.setLanguage(this._currentLang);
+			// Load saved language preference or use default
+			const savedLang = this.getSavedLanguage();
+			await this.setLanguage(savedLang || this._currentLang);
 			this._isInitialized = true;
 		}
 	}
@@ -51,8 +55,73 @@ export default class I18Manager {
 		return this._currentLang;
 	}
 
+	/** Get list of available languages */
+	public static getAvailableLanguages(): string[] {
+		return ["en", "vi", "zh"];
+	}
+
 	/** Change language at runtime */
 	public static async changeLanguage(lang: string): Promise<void> {
 		await this.setLanguage(lang);
+		this.saveLanguagePreference(lang);
+	}
+
+	/** Save language preference to localStorage */
+	private static saveLanguagePreference(lang: string): void {
+		try {
+			if (
+				cc.sys.isBrowser &&
+				typeof localStorage !== "undefined"
+			) {
+				localStorage.setItem(
+					this.LANGUAGE_STORAGE_KEY,
+					lang
+				);
+			}
+		} catch (error) {
+			console.warn(
+				"[i18n] Failed to save language preference:",
+				error
+			);
+		}
+	}
+
+	/** Get saved language preference from localStorage */
+	private static getSavedLanguage(): string | null {
+		try {
+			if (
+				cc.sys.isBrowser &&
+				typeof localStorage !== "undefined"
+			) {
+				return localStorage.getItem(
+					this.LANGUAGE_STORAGE_KEY
+				);
+			}
+		} catch (error) {
+			console.warn(
+				"[i18n] Failed to load language preference:",
+				error
+			);
+		}
+		return null;
+	}
+
+	/** Clear saved language preference from localStorage */
+	public static clearLanguagePreference(): void {
+		try {
+			if (
+				cc.sys.isBrowser &&
+				typeof localStorage !== "undefined"
+			) {
+				localStorage.removeItem(
+					this.LANGUAGE_STORAGE_KEY
+				);
+			}
+		} catch (error) {
+			console.warn(
+				"[i18n] Failed to clear language preference:",
+				error
+			);
+		}
 	}
 }
