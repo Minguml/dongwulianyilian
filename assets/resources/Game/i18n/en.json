@@ -67,7 +67,7 @@
 	"level": "Level: ",
 	"time": "Time: ",
 	"hint": "Hint",
-	"loss": "You lost!",
+	"loss": "Loss! You ran out of time!",
 	"restart_ask": "Would you like to retry?",
 	"you": "You"
 }

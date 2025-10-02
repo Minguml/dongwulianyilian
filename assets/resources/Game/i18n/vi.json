@@ -67,7 +67,7 @@
 	"level": "Màn: ",
 	"time": "Thời gian: ",
 	"hint": "Gợi ý",
-	"loss": "Thất bại!",
+	"loss": "Thất bại! Bạn đã hết thời gian!",
 	"restart_ask": "Bạn có muốn thử lại không?",
 	"you": "Bạn"
 }
